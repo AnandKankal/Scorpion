@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <beans xmlns = "http://www.springframework.org/schema/beans" xmlns:xsi 
+	= "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"> <bean 
+	id="heart" class="com.ak.AutoWiring.Heart"></bean> <bean id="human" class="com.ak.AutoWiring.Human"> 
+	<property name="heart" ref="heartObject"> </property> </bean> <bean id="human" 
+	class="com.ak.AutoWiring.Human" autowire="constructor"> </bean> <bean id="human" 
+	class="com.ak.AutoWiring.Human" > </bean> </beans> -->
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<context:annotation-config></context:annotation-config>
+	<!-- byType first -->
+	<!--  <bean id="heartOnj" class="com.ak.AutoWiring.Heart"></bean>-->
+	
+	<!-- byType fails so go for byName -->
+	<!-- <bean id="heart" class="com.ak.AutoWiring.Heart"></bean>
+	<bean id="Octapas" class="com.ak.AutoWiring.Heart"></bean> -->
+	
+	<!-- byType byName both fails -->
+	<bean id="humanHeart" class="com.ak.AutoWiring.Heart">
+		<property name="nameOfAnimal" value="Human"></property>
+		<property name="noOfHeart" value="1"></property>
+	</bean>
+	<bean id="Octapas" class="com.ak.AutoWiring.Heart">
+		<property name="nameOfAnimal" value="Octapus"></property>
+		<property name="noOfHeart" value="3"></property>
+	</bean>
+	
+	<bean id="human" class="com.ak.AutoWiring.Human">
+
+	</bean>
+	
+	<context:property-placeholder location="classpath:student.info.properties"/>
+	<bean id="student" class="com.value.Student">
+
+	</bean>
+	
+	
+		
+	
+
+</beans>
